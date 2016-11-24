@@ -28,7 +28,7 @@
 ```
 
 ### 二、生成控制面板
-![](../images/resize/resize.png)
+![](source/resize.png)
 1. 面板：为了尽可能少的影响到拖拽项，就不直接在拖拽项上生成控制点，而是为拖拽项增加一个半透明层作为控制面板，控制面板尺寸位置和拖拽项一致，将控制面板插入拖拽项（由于都是absolute布局，不影响原内容），可以更好的控制位置和一一对应
 ```
     var width = $(this).width();
@@ -88,7 +88,7 @@
 ```
 3. 监听控制面板的mousedown，同样定义一个标志，用于拖动（drag）
 4. 监听舞台（stage）的mousemove（注意这里不是监听控制点的mousemove，因为控制点实在是太小，无法灵敏的拖动），判断各个控制点以及控制面板mousedown的标志分别对宽高和位置进行处理。处理的逻辑为：touchmove过程中的`e.pageX/e.pageY - ox/oy(原始) = 偏移量`，对于第一点中提到的每个控制点影响的属性，根据偏移量进行变化
-![](../images/resize/event.png)
+![](source/event.png)
 5. 监听舞台（stage）的mouseup事件（这里同样不能是控制点的mouseup），把所有的mousedown标志重置为false
 
 > pc端的mouse事件不同于手机端的touch事件，touchstart->touchmove->touchend触发有顺序性，mouse事件没有顺序性，未触发mousedown也能触发mousemove，所以需要设置标志来判断
